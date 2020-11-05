@@ -10,8 +10,10 @@
   "dependencies": {
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "date-fns": "^2.16.1",
     "element-ui": "^2.14.0",
     "vue": "^2.6.11",
+    "vue-axios": "^3.1.3",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },
@@ -32,17 +34,88 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/recommended",
       "eslint:recommended"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
-    },
-    "rules": {}
+    }
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "@vue/cli-service": {
+    "version": "3.11.0",
+    "resolved": "https://registry.npm.taobao.org/@vue/cli-service/download/@vue/cli-service-3.11.0.tgz",
+    "integrity": "sha1-NWUm6RAKegoljjxKE/9CHeKerd4=",
+    "dev": true,
+    "requires": {
+      "@intervolga/optimize-cssnano-plugin": "^1.0.5",
+      "@soda/friendly-errors-webpack-plugin": "^1.7.1",
+      "@vue/cli-overlay": "^3.11.0",
+      "@vue/cli-shared-utils": "^3.11.0",
+      "@vue/component-compiler-utils": "^3.0.0",
+      "@vue/preload-webpack-plugin": "^1.1.0",
+      "@vue/web-component-wrapper": "^1.2.0",
+      "acorn": "^6.1.1",
+      "acorn-walk": "^6.1.1",
+      "address": "^1.0.3",
+      "autoprefixer": "^9.5.1",
+      "browserslist": "^4.5.4",
+      "cache-loader": "^2.0.1",
+      "case-sensitive-paths-webpack-plugin": "^2.2.0",
+      "chalk": "^2.4.2",
+      "cli-highlight": "^2.1.0",
+      "clipboardy": "^2.0.0",
+      "cliui": "^5.0.0",
+      "copy-webpack-plugin": "^4.6.0",
+      "css-loader": "^1.0.1",
+      "cssnano": "^4.1.10",
+      "current-script-polyfill": "^1.0.0",
+      "debug": "^4.1.1",
+      "default-gateway": "^5.0.2",
+      "dotenv": "^7.0.0",
+      "dotenv-expand": "^5.1.0",
+      "escape-string-regexp": "^1.0.5",
+      "file-loader": "^3.0.1",
+      "fs-extra": "^7.0.1",
+      "globby": "^9.2.0",
+      "hash-sum": "^1.0.2",
+      "html-webpack-plugin": "^3.2.0",
+      "launch-editor-middleware": "^2.2.1",
+      "lodash.defaultsdeep": "^4.6.1",
+      "lodash.mapvalues": "^4.6.0",
+      "lodash.transform": "^4.6.0",
+      "mini-css-extract-plugin": "^0.6.0",
+      "minimist": "^1.2.0",
+      "ora": "^3.4.0",
+      "portfinder": "^1.0.20",
+      "postcss-loader": "^3.0.0",
+      "read-pkg": "^5.0.0",
+      "semver": "^6.0.0",
+      "slash": "^2.0.0",
+      "source-map-url": "^0.4.0",
+      "ssri": "^6.0.1",
+      "string.prototype.padend": "^3.0.0",
+      "terser-webpack-plugin": "^1.2.3",
+      "thread-loader": "^2.1.2",
+      "url-loader": "^1.1.2",
+      "vue-loader": "^15.7.0",
+      "webpack": "^4.0.0",
+      "webpack-bundle-analyzer": "^3.3.0",
+      "webpack-chain": "^4.11.0",
+      "webpack-dev-server": "^3.4.1",
+      "webpack-merge": "^4.2.1"
+    },
+    "dependencies": {
+      "semver": {
+        "version": "6.3.0",
+        "resolved": "https://registry.npm.taobao.org/semver/download/semver-6.3.0.tgz?cache=0&sync_timestamp=1565627380363&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsemver%2Fdownload%2Fsemver-6.3.0.tgz",
+        "integrity": "sha1-7gpkyK9ejO6mdoexM3YeG+y9HT0=",
+        "dev": true
+      }
+    }
+  }
 }
