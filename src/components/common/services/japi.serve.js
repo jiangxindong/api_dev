@@ -43,16 +43,20 @@ export default {
     return new Promise((resolve, reject) => {
       url = `${this._prefix.DEFAULT}${url}`
       Vue.axios.get(url, params).then(res => {
-        resolve(res.data)
-        if (!res._code) {
-          console.log(res)
-          debugger
+        const data = res.data
+        resolve(data)
+        if (!data.code) {
           return res;
         }
-        else if (res._code === _state.SUCCESS_CODE) {
+        else if (data.code === this._state.SUCCESS_CODE) {
           return res;
-        } else {
-          Notify.error("Server ERROR!" + res._code);
+        }
+        else if (data.code === this._state.ERROR_CODE) {
+          Notify.error("Request Error:" + res);
+          return res;
+        }
+        else {
+          return res;
         }
       }).catch(err => {
         Notify.error("Server ERROR!" + res);
