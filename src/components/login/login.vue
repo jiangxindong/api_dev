@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { ApiService, Processor, PropsConfig } from "../common/services";
+import { Processor, PropsConfig, JApi } from "../common/services";
 export default {
   data() {
     var checkUser = (rule, value, callback) => {
@@ -75,16 +75,17 @@ export default {
       };
       const url = `/default/org.gocom.components.coframe.auth.login.login.flow`;
       this.loading = true;
-      this.axios.post(url, loginData).then((data) => {
-        if (data == undefined || data.statusCode == undefined) {
-          // this.popInfo("服务器异常，无法登录");
-        } else if (data.statusCode === 2000) {
-          window.localStorage.setItem("token", data.token);
+      JApi.post("org.gocom.components.coframe.auth.login.login.flow", {
+        userId: this.ruleForm.userId,
+        password: this.ruleForm.pass,
+      }).then((res) => {
+        if (res.statusCode === 2000) {
+          window.localStorage.setItem("token", res.token);
           document.onkeydown = null;
           const url = `/default/com.cestc.commons.config.getServerAddress.biz.ext`;
-          this.axios.post(url).then((data) => {
-            if (data.code === 2000) {
-              window.localStorage.setItem("wpsUrl", data.data);
+          this.axios.post(url).then((res) => {
+            if (res.code === 2000) {
+              window.localStorage.setItem("wpsUrl", res.data);
               const next = window.localStorage.getItem("nextUrl");
               if (
                 loginData.userId == "权限管理员" ||
@@ -100,11 +101,44 @@ export default {
               }
             }
           });
-        } else if (data.statusCode === 4000) {
+        } else if (res.statusCode === 4000) {
+          console.log(res);
+          debugger;
           this.popInfo("用户名密码不正确");
         }
         this.loading = false;
       });
+      // this.axios.post(url, loginData).then((data) => {
+      //   data = data.data;
+      //   if (data == undefined || data.statusCode == undefined) {
+      //     this.popInfo("服务器异常，无法登录");
+      //   } else if (data.statusCode === 2000) {
+      //     window.localStorage.setItem("token", data.token);
+      //     document.onkeydown = null;
+      //     const url = `/default/com.cestc.commons.config.getServerAddress.biz.ext`;
+      //     this.axios.post(url).then((data) => {
+      //       if (data.code === 2000) {
+      //         window.localStorage.setItem("wpsUrl", data.data);
+      //         const next = window.localStorage.getItem("nextUrl");
+      //         if (
+      //           loginData.userId == "权限管理员" ||
+      //           loginData.userId == "用户管理员" ||
+      //           loginData.userId == "审计管理员"
+      //         ) {
+      //           const managerUrl = "/default/skins/itc/index.jsp";
+      //           window.open(managerUrl, "_self");
+      //         } else if (next) {
+      //           Processor.getLoginUserInfo(this, next);
+      //         } else {
+      //           Processor.getLoginUserInfo(this, "/main/shouye-tongzhi");
+      //         }
+      //       }
+      //     });
+      //   } else if (data.statusCode === 4000) {
+      //     this.popInfo("用户名密码不正确");
+      //   }
+      //   this.loading = false;
+      // });
     },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
